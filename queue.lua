@@ -45,7 +45,7 @@ end)({
     end,
     -- output item if that index exists
     ipeek = function(self, index)
-        if index < 0 or index > self:count() then return nil end
+        if index < 0 or index > self:count() - 1 then return nil end
         return self.stack[AND(index + self.head, self.mask)]
     end,
     -- queue:foreach(print) | queue:foreach(save) | ect..
