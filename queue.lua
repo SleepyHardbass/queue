@@ -78,17 +78,15 @@ end)({
         return self
     end,
     free = function(self)
+        -- drain
         for i = self.mask + 1, 8, -1 do
             self.stack[i] = nil
         end
         self.mask = 7
-        self.stack[0], self.stack[1] = 0, 0
-        self.stack[2], self.stack[3] = 0, 0
-        self.stack[4], self.stack[5] = 0, 0
-        self.stack[6], self.stack[7] = 0, 0
+        self.stack[-1] = nil
         return self:clear()
     end,
-    -- queue:totable(mytable) --> table.concat(mytable, ", ") --> sting
+    -- queue:totable(mytable) --> table.concat(mytable, ", ") --> string
     totable = function(self, output)
         output = output or {}
         local length = #output
@@ -111,6 +109,7 @@ end)({
         for i = self.mask + 1, count, -1 do
             self.stack[i] = nil
         end
+        self.stack[-1] = nil
         template = nil
         self.head = 0
         self.tail = count
