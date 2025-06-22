@@ -83,7 +83,7 @@ end)({
             self.stack[i] = nil
         end
         self.mask = 7
-        self.stack[-1] = nil
+        --self.stack[-1] = nil -- array --> hashmap
         return self:clear()
     end,
     -- queue:totable(mytable) --> table.concat(mytable, ", ") --> string
@@ -109,7 +109,7 @@ end)({
         for i = self.mask + 1, count, -1 do
             self.stack[i] = nil
         end
-        self.stack[-1] = nil
+        --self.stack[-1] = nil -- array --> hashmap
         template = nil
         self.head = 0
         self.tail = count
